@@ -46,7 +46,6 @@ echo $OUTPUT->header();
 
 
 <!-- Main Form Content -->
-<h2 style="text-align: center;">Support Time Tracker</h2>
 
 <form id="support-time-form" method="post" action="#">
 
@@ -71,9 +70,9 @@ echo $OUTPUT->header();
 
 
     <!-- Support Time Inputs -->
-    <div style="display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+    <div style="display: flex; flex-direction:row; gap:.5rem; align-items:space-between; margin-top: 20px; flex-wrap: wrap;">
         <!-- Email Support Section -->
-        <div style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 8px; min-width: 300px;">
+        <div style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 200px;">
             <h3>📧 Email Support</h3>
             <label>Level 1 (6 mins)</label>
             <input type="number" class="email-level" data-minutes="6" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
@@ -89,7 +88,7 @@ echo $OUTPUT->header();
         </div>
 
         <!-- Phone Support Section -->
-        <div style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 8px; min-width: 300px;">
+        <div style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 200px;">
             <h3>📞 Phone Support</h3>
             <label>Level 1 (6 mins)</label>
             <input type="number" class="phone-level" data-minutes="6" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
@@ -106,14 +105,14 @@ echo $OUTPUT->header();
     </div>
 
     <!-- Total Support Time -->
-    <div style="margin-top: 20px; text-align: center;">
+    <div style="margin-top: 20px; text-align: left;">
         <h3>Total Support Time</h3>
-        <p id="total-support-time">This day you provided <strong>0 minutes</strong> of support.</p>
+        <p id="total-support-time"><strong>This day you provided 0 minutes of support.</strong></p>
     </div>
 
     <!-- Submit Button -->
-    <div style="text-align: center;">
-        <button type="submit" style="padding: 10px 20px; background-color: #0073aa; color: white; border: none; border-radius: 5px;">
+    <div style="text-align: left;">
+        <button type="submit" style="padding: 10px 20px; background-color: black; color: white; border: none; border-radius: 5px; width:100%">
             Submit
         </button>
     </div>
@@ -140,7 +139,7 @@ echo $OUTPUT->header();
         });
 
         // Update total support time display
-        document.getElementById('total-support-time').innerHTML = `This day you provided <strong>${totalMinutes} minutes</strong> of support.`;
+        document.getElementById('total-support-time').innerHTML = `<strong>This day you provided ${totalMinutes} minutes of support.</strong>`;
     }
 
     flatpickr("#date", {
