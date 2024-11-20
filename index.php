@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     global $DB;
 
     // Get form values
-    $name = fullname($USER); // Logged-in user's name
+    $name = required_param('user-name', PARAM_TEXT);
     $date = required_param('date', PARAM_TEXT);
     $siteName = required_param('site-name', PARAM_TEXT);
 
@@ -62,8 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $record->phone_level4 = $phoneLevels['level4'];
     $record->total_support_time = $totalSupportTime;
 
-    // Insert record into the database
-    $DB->insert_record('challenge_support_time', $record);
+    // Insert record into the database and get the ID of the new record
+    $inserted_id = $DB->insert_record('challenge_support_time', $record);
+
+    if ($inserted_id) {
+        echo 'Record inserted successfully with ID: ' . $inserted_id;
+    } else {
+        echo 'Database insert failed.';
+    }
+    die();
+
 
     // Redirect with a success message
     redirect($PAGE->url, 'Support time has been recorded successfully.', null, \core\output\notification::NOTIFY_SUCCESS);
@@ -86,8 +94,8 @@ echo $OUTPUT->header();
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-input" id="name" value="<?php echo fullname($USER) . ' (logged in user)'; ?>" readonly>
+            <input type="hidden" name="user-name" value="<?php echo fullname($USER); ?>">
         </div>
-
         <!-- Date Picker -->
         <div class="form-group date-picker">
             <label for="date">Select date</label>
@@ -102,9 +110,9 @@ echo $OUTPUT->header();
             <label for="site-name">Site name</label>
             <select class="form-input" id="site-name" name="site-name" required>
                 <option value="" disabled selected>Select site</option>
-                <option value="site1">Gold Coast University Hospital</option>
-                <option value="site2">Robina Hospital</option>
-                <option value="site3">Varsity Lakes Day Hospital</option>
+                <option value="Gold Coast University Hospital">Gold Coast University Hospital</option>
+                <option value="Robina Hospital">Robina Hospital</option>
+                <option value="Varsity Lakes Day Hospital">Varsity Lakes Day Hospital</option>
                 <!-- Add more options as needed -->
             </select>
         </div>
@@ -115,28 +123,29 @@ echo $OUTPUT->header();
             <div class="support-section">
                 <h3><i class="fas fa-envelope"></i> Email Support</h3>
                 <label>Level 1 (6 mins)</label>
-                <input type="number" class="form-input email-level" data-minutes="6" value="0" min="0" required>
+                <input type="number" class="form-input email-level" name="email-level-1" data-minutes="6" value="0" min="0" required>
                 <label>Level 2 (15 mins)</label>
-                <input type="number" class="form-input email-level" data-minutes="15" value="0" min="0" required>
+                <input type="number" class="form-input email-level" name="email-level-2" data-minutes="15" value="0" min="0" required>
                 <label>Level 3 (30 mins)</label>
-                <input type="number" class="form-input email-level" data-minutes="30" value="0" min="0" required>
+                <input type="number" class="form-input email-level" name="email-level-3" data-minutes="30" value="0" min="0" required>
                 <label>Level 4 (45 mins)</label>
-                <input type="number" class="form-input email-level" data-minutes="45" value="0" min="0" required>
+                <input type="number" class="form-input email-level" name="email-level-4" data-minutes="45" value="0" min="0" required>
             </div>
 
             <!-- Phone Support Section -->
             <div class="support-section">
                 <h3><i class="fa-solid fa-phone"></i> Phone Support</h3>
                 <label>Level 1 (6 mins)</label>
-                <input type="number" class="form-input phone-level" data-minutes="6" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" name="phone-level-1" data-minutes="6" value="0" min="0" required>
                 <label>Level 2 (15 mins)</label>
-                <input type="number" class="form-input phone-level" data-minutes="15" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" name="phone-level-2" data-minutes="15" value="0" min="0" required>
                 <label>Level 3 (30 mins)</label>
-                <input type="number" class="form-input phone-level" data-minutes="30" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" name="phone-level-3" data-minutes="30" value="0" min="0" required>
                 <label>Level 4 (45 mins)</label>
-                <input type="number" class="form-input phone-level" data-minutes="45" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" name="phone-level-4" data-minutes="45" value="0" min="0" required>
             </div>
         </div>
+
 
         <!-- Total Support Time -->
         <div class="total-time">
