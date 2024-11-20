@@ -14,139 +14,74 @@ $PAGE->set_heading('Support Time Tracker');
 // Output the header.
 echo $OUTPUT->header();
 ?>
+
+<!-- Link External CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-<style>
-    input[type="date"]::before {
-        content: "Pick a date";
-        color: #aaa;
-        font-size: 14px;
-    }
-
-    input[type="date"]:focus::before,
-    input[type="date"]:valid::before {
-        content: "";
-    }
-
-    input[type="date"] {
-        width: 100%;
-        padding: 8px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        color: #000;
-    }
-
-    input[type="date"]:focus {
-        border-color: #0073aa;
-        outline: none;
-    }
-</style>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="challenge.css">
 
 <!-- Main Form Content -->
+<main readonly>
+    <form id="support-time-form" method="post" action="#">
 
-<form id="support-time-form" method="post" action="#">
-
-    <!-- User Information -->
-    <div style="margin-bottom: 20px;">
-        <label for="name">Name</label>
-        <input type="text" id="name" value="<?php echo fullname($USER) . ' (logged in user)'; ?>" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
-    </div>
-
-
-    <div style="margin-bottom: 20px;">
-    <label for="date">Select date</label>
-    <input
-        type="text"
-        id="date"
-        name="date"
-        placeholder="Pick a date"
-        required
-        style="width: 100%; padding: 8px; margin-top: 5px; font-size: 14px; border-radius: 5px; border: 1px solid #ccc;">
-</div>
-
-
-
-    <!-- Support Time Inputs -->
-    <div style="display: flex; flex-direction:row; gap:.5rem; align-items:space-between; margin-top: 20px; flex-wrap: wrap;">
-        <!-- Email Support Section -->
-        <div style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 200px;">
-            <h3>📧 Email Support</h3>
-            <label>Level 1 (6 mins)</label>
-            <input type="number" class="email-level" data-minutes="6" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-
-            <label>Level 2 (15 mins)</label>
-            <input type="number" class="email-level" data-minutes="15" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-
-            <label>Level 3 (30 mins)</label>
-            <input type="number" class="email-level" data-minutes="30" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-
-            <label>Level 4 (45 mins)</label>
-            <input type="number" class="email-level" data-minutes="45" value="0" min="0" required style="width: 100%; padding: 8px;">
+        <!-- User Information -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" value="<?php echo fullname($USER) . ' (logged in user)'; ?>" readonly>
         </div>
 
-        <!-- Phone Support Section -->
-        <div style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 200px;">
-            <h3>📞 Phone Support</h3>
-            <label>Level 1 (6 mins)</label>
-            <input type="number" class="phone-level" data-minutes="6" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-
-            <label>Level 2 (15 mins)</label>
-            <input type="number" class="phone-level" data-minutes="15" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-
-            <label>Level 3 (30 mins)</label>
-            <input type="number" class="phone-level" data-minutes="30" value="0" min="0" required style="width: 100%; padding: 8px; margin-bottom: 10px;">
-
-            <label>Level 4 (45 mins)</label>
-            <input type="number" class="phone-level" data-minutes="45" value="0" min="0" required style="width: 100%; padding: 8px;">
+        <!-- Date Picker -->
+        <div class="form-group">
+            <label for="date">Select date</label>
+            <input type="text" id="date" name="date" placeholder="Pick a date" required>
         </div>
-    </div>
 
-    <!-- Total Support Time -->
-    <div style="margin-top: 20px; text-align: left;">
-        <h3>Total Support Time</h3>
-        <p id="total-support-time"><strong>This day you provided 0 minutes of support.</strong></p>
-    </div>
+        <!-- Support Time Inputs -->
+        <div class="support-sections">
+            <!-- Email Support Section -->
+            <div class="support-section">
+            <h3><i class="fas fa-envelope"></i> Email Support</h3>
+                <label>Level 1 (6 mins)</label>
+                <input type="number" class="email-level" data-minutes="6" value="0" min="0" required>
+                <label>Level 2 (15 mins)</label>
+                <input type="number" class="email-level" data-minutes="15" value="0" min="0" required>
+                <label>Level 3 (30 mins)</label>
+                <input type="number" class="email-level" data-minutes="30" value="0" min="0" required>
+                <label>Level 4 (45 mins)</label>
+                <input type="number" class="email-level" data-minutes="45" value="0" min="0" required>
+            </div>
 
-    <!-- Submit Button -->
-    <div style="text-align: left;">
-        <button type="submit" style="padding: 10px 20px; background-color: black; color: white; border: none; border-radius: 5px; width:100%">
-            Submit
-        </button>
-    </div>
+            <!-- Phone Support Section -->
+            <div class="support-section">
+                <h3><i class="fa-solid fa-phone"></i> Phone Support</h3>
+                <label>Level 1 (6 mins)</label>
+                <input type="number" class="phone-level" data-minutes="6" value="0" min="0" required>
+                <label>Level 2 (15 mins)</label>
+                <input type="number" class="phone-level" data-minutes="15" value="0" min="0" required>
+                <label>Level 3 (30 mins)</label>
+                <input type="number" class="phone-level" data-minutes="30" value="0" min="0" required>
+                <label>Level 4 (45 mins)</label>
+                <input type="number" class="phone-level" data-minutes="45" value="0" min="0" required>
+            </div>
+        </div>
 
-</form>
+        <!-- Total Support Time -->
+        <div class="total-time">
+            <h3><i class="fa-regular fa-clock"></i> Total Support Time</h3>
+            <p id="total-support-time"><strong>This day you provided 0 minutes of support.</strong></p>
+        </div>
 
-<script>
-    // JavaScript for dynamic support time calculation
-    document.querySelectorAll('input[type="number"]').forEach(input => {
-        input.addEventListener('input', calculateTotalSupportTime);
-    });
+        <!-- Submit Button -->
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
 
-    function calculateTotalSupportTime() {
-        let totalMinutes = 0;
+    </form>
+</main>
 
-        // Sum email support times
-        document.querySelectorAll('.email-level').forEach(input => {
-            totalMinutes += input.value * input.getAttribute('data-minutes');
-        });
-
-        // Sum phone support times
-        document.querySelectorAll('.phone-level').forEach(input => {
-            totalMinutes += input.value * input.getAttribute('data-minutes');
-        });
-
-        // Update total support time display
-        document.getElementById('total-support-time').innerHTML = `<strong>This day you provided ${totalMinutes} minutes of support.</strong>`;
-    }
-
-    flatpickr("#date", {
-        dateFormat: "Y-m-d",
-        allowInput: true,
-    });
-</script>
+<!-- Link External JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="scripts.js"></script>
 
 <?php
 // Output the footer.
