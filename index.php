@@ -65,12 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Insert record into the database and get the ID of the new record
     $inserted_id = $DB->insert_record('challenge_support_time', $record);
 
-    if ($inserted_id) {
-        echo 'Record inserted successfully with ID: ' . $inserted_id;
-    } else {
-        echo 'Database insert failed.';
-    }
-    die();
+    // if ($inserted_id) {
+    //     echo 'Record inserted successfully with ID: ' . $inserted_id;
+    // } else {
+    //     echo 'Database insert failed.';
+    // }
+    // die();
 
 
     // Redirect with a success message
