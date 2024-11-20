@@ -81,7 +81,7 @@ echo $OUTPUT->header();
 
 <!-- Link External JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="scripts.js"></script>
+<script src="challenge.js"></script>
 
 <?php
 // Output the footer.
