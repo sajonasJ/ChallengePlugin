@@ -38,7 +38,7 @@ echo $OUTPUT->header();
         <div class="form-group date-picker">
             <label for="date">Select date</label>
             <div class="input-container">
-                <input type="text" class="form-input" id="date" name="date" placeholder="Pick a date" >
+                <input type="text" class="form-input" id="date" name="date" placeholder="Pick a date" required>
                 <i class="fa-solid fa-calendar"></i>
             </div>
         </div>
@@ -46,7 +46,7 @@ echo $OUTPUT->header();
         <!-- Site Information -->
         <div class="form-group">
             <label for="site-name">Site name</label>
-            <select class="form-input" id="site-name" name="site-name" >
+            <select class="form-input" id="site-name" name="site-name" required>
                 <option value="" disabled selected>Select site</option>
                 <?php foreach ($site_names as $site): ?>
                     <option value="<?php echo htmlspecialchars($site); ?>">
@@ -62,26 +62,26 @@ echo $OUTPUT->header();
             <div class="support-section">
                 <h3><i class="fas fa-envelope"></i> Email Support</h3>
                 <label>Level 1 (6 mins)</label>
-                <input type="number" class="form-input email-level" name="email-level-1" data-minutes="6" value="0" min="0" >
+                <input type="number" class="form-input email-level" name="email-level-1" data-minutes="6" value="0" min="0" required>
                 <label>Level 2 (15 mins)</label>
-                <input type="number" class="form-input email-level" name="email-level-2" data-minutes="15" value="0" min="0" >
+                <input type="number" class="form-input email-level" name="email-level-2" data-minutes="15" value="0" min="0" required>
                 <label>Level 3 (30 mins)</label>
-                <input type="number" class="form-input email-level" name="email-level-3" data-minutes="30" value="0" min="0" >
+                <input type="number" class="form-input email-level" name="email-level-3" data-minutes="30" value="0" min="0" required>
                 <label>Level 4 (45 mins)</label>
-                <input type="number" class="form-input email-level" name="email-level-4" data-minutes="45" value="0" min="0" >
+                <input type="number" class="form-input email-level" name="email-level-4" data-minutes="45" value="0" min="0" required>
             </div>
 
             <!-- Phone Support Section -->
             <div class="support-section">
                 <h3><i class="fa-solid fa-phone"></i> Phone Support</h3>
                 <label>Level 1 (6 mins)</label>
-                <input type="number" class="form-input phone-level" name="phone-level-1" data-minutes="6" value="0" min="0" >
+                <input type="number" class="form-input phone-level" name="phone-level-1" data-minutes="6" value="0" min="0" required>
                 <label>Level 2 (15 mins)</label>
-                <input type="number" class="form-input phone-level" name="phone-level-2" data-minutes="15" value="0" min="0" >
+                <input type="number" class="form-input phone-level" name="phone-level-2" data-minutes="15" value="0" min="0" required>
                 <label>Level 3 (30 mins)</label>
-                <input type="number" class="form-input phone-level" name="phone-level-3" data-minutes="30" value="0" min="0" >
+                <input type="number" class="form-input phone-level" name="phone-level-3" data-minutes="30" value="0" min="0" required>
                 <label>Level 4 (45 mins)</label>
-                <input type="number" class="form-input phone-level" name="phone-level-4" data-minutes="45" value="0" min="0" >
+                <input type="number" class="form-input phone-level" name="phone-level-4" data-minutes="45" value="0" min="0" required>
             </div>
         </div>
 
