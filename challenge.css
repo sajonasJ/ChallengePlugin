@@ -17,14 +17,11 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-
 .form-input:focus {
     border-color: #0073aa;
     outline: none;
 }
 
-
-/* Support Sections */
 .support-sections {
     display: flex;
     flex-wrap: wrap;
@@ -40,7 +37,6 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-/* Total Support Time */
 .total-time {
     margin-top: 20px;
     text-align: left;
@@ -49,7 +45,6 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-/* Submit Button */
 .form-button {
     margin-top: 20px;
     padding: 10px 20px;
@@ -64,24 +59,21 @@
     background-color: #333;
 }
 
-/* Parent container to position elements */
 .input-container {
     position: relative;
     width: 100%;
 }
 
-/* Style the input field */
 .input-container .form-input {
-    padding-right: 40px; /* Add space for the icon */
+    padding-right: 40px;
 }
 
-/* Style the calendar icon */
 .input-container i {
     position: absolute;
-    right: 10px; /* Position it inside the input */
-    top: 50%; /* Center vertically */
+    right: 10px;
+    top: 50%;
     transform: translateY(-50%);
     font-size: 16px;
     color: #aaa;
-    pointer-events: none; /* Prevent interaction with the icon */
+    pointer-events: none;
 }
