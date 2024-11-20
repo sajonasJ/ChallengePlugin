@@ -9,24 +9,27 @@ try {
     }
 
     // Validation Functions
-    function validate_name($name) {
+    function validate_name($name)
+    {
         $name = trim($name);
         if (strlen($name) < 3 || strlen($name) > 20) {
-            throw new moodle_exception('Invalid name length. Name must be between 3 and 20 characters.');
+            throw new moodle_exception(' Invalid name length. Name must be between 3 and 20 characters.');
         }
         if (!preg_match('/^[a-zA-Z \'-]+$/', $name)) {
-            throw new moodle_exception('Invalid name format. Only letters, spaces, hyphens, and apostrophes are allowed.');
+            throw new moodle_exception(' Invalid name format. Only letters, spaces, hyphens, and apostrophes are allowed.');
         }
         return $name;
     }
 
-    function validate_total_support_time($totalSupportTime) {
+    function validate_total_support_time($totalSupportTime)
+    {
         if ($totalSupportTime <= 0) {
-            throw new moodle_exception('Total support time must be greater than zero.');
+            throw new moodle_exception(' Total support time must be greater than zero.');
         }
     }
 
-    function check_duplicate_record($name, $date, $siteName) {
+    function check_duplicate_record($name, $date, $siteName)
+    {
         global $DB;
         $existing = $DB->get_record('challenge_support_time', [
             'name' => $name,
@@ -34,11 +37,12 @@ try {
             'site' => $siteName,
         ]);
         if ($existing) {
-            throw new moodle_exception('A record for this user, date, and site already exists.');
+            throw new moodle_exception(' A record for this user, date, and site already exists.');
         }
     }
 
-    function trim_inputs($data) {
+    function trim_inputs($data)
+    {
         return array_map('trim', $data);
     }
 
@@ -63,20 +67,20 @@ try {
 
     // Validate Date
     if (!strtotime($date)) {
-        throw new moodle_exception('Invalid date format. Please provide a valid date.');
+        throw new moodle_exception(' Invalid date format. Please provide a valid date.');
     }
 
     // Validate Site Name
     $site_names = explode("\n", get_config('local_challenge', 'site_names'));
     $site_names = array_map('trim', $site_names);
     if (!in_array($siteName, $site_names)) {
-        throw new moodle_exception('Invalid site name selected.');
+        throw new moodle_exception(' Invalid site name selected.');
     }
 
     // Validate Email and Phone Levels
     foreach (array_merge($emailLevels, $phoneLevels) as $level => $value) {
         if ($value < 0) {
-            throw new moodle_exception("Invalid value for $level: must be a non-negative integer.");
+            throw new moodle_exception(" Invalid value for $level: must be a non-negative integer.");
         }
     }
 
@@ -115,7 +119,6 @@ try {
 
     // Redirect with Success
     redirect(new moodle_url('/local/challenge/index.php'), 'Support time has been recorded successfully.', null, \core\output\notification::NOTIFY_SUCCESS);
-
 } catch (moodle_exception $e) {
     // Handle Exceptions
     redirect(new moodle_url('/local/challenge/index.php'), $e->getMessage(), null, \core\output\notification::NOTIFY_ERROR);
