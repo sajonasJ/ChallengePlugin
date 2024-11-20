@@ -1,5 +1,5 @@
 /* General Styling */
-main {
+.challenge-main {
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -8,18 +8,21 @@ main {
     margin-bottom: 20px;
 }
 
-input[type="text"], input[type="number"] {
+.form-input {
     width: 100%;
     padding: 8px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
 
-input[type="text"]:focus, input[type="number"]:focus {
+
+.form-input:focus {
     border-color: #0073aa;
     outline: none;
 }
+
 
 /* Support Sections */
 .support-sections {
@@ -41,13 +44,44 @@ input[type="text"]:focus, input[type="number"]:focus {
 .total-time {
     margin-top: 20px;
     text-align: left;
+    padding: 15px 15px 0 15px;
+    border: 1px solid #ccc;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-button {
+/* Submit Button */
+.form-button {
+    margin-top: 20px;
     padding: 10px 20px;
     background-color: black;
     color: white;
     border: none;
     border-radius: 5px;
     width: 100%;
+}
+
+.form-button:active {
+    background-color: #333;
+}
+
+/* Parent container to position elements */
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Style the input field */
+.input-container .form-input {
+    padding-right: 40px; /* Add space for the icon */
+}
+
+/* Style the calendar icon */
+.input-container i {
+    position: absolute;
+    right: 10px; /* Position it inside the input */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #aaa;
+    pointer-events: none; /* Prevent interaction with the icon */
 }

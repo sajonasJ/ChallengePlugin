@@ -17,51 +17,66 @@ echo $OUTPUT->header();
 
 <!-- Link External CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="challenge.css">
 
 <!-- Main Form Content -->
-<main readonly>
+<main class="challenge-main" readonly>
     <form id="support-time-form" method="post" action="#">
 
         <!-- User Information -->
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" value="<?php echo fullname($USER) . ' (logged in user)'; ?>" readonly>
+            <input type="text" class="form-input" id="name" value="<?php echo fullname($USER) . ' (logged in user)'; ?>" readonly>
         </div>
+<!-- Date Picker -->
+<div class="form-group date-picker">
+    <label for="date">Select date</label>
+    <div class="input-container">
+        <input type="text" class="form-input" id="date" name="date" placeholder="Pick a date" required>
+        <i class="fa-solid fa-calendar"></i>
+    </div>
+</div>
 
-        <!-- Date Picker -->
+
+        <!-- Site Information -->
         <div class="form-group">
-            <label for="date">Select date</label>
-            <input type="text" id="date" name="date" placeholder="Pick a date" required>
+            <label for="site-name">Site name</label>
+            <select class="form-input" id="site-name" name="site-name" required>
+                <option value="" disabled selected>Select site</option>
+                <option value="site1">Gold Coast University Hospital</option>
+                <option value="site2">Robina Hospital</option>
+                <option value="site3">Varsity Lakes Day Hospital</option>
+                <!-- Add more options as needed -->
+            </select>
         </div>
 
         <!-- Support Time Inputs -->
         <div class="support-sections">
             <!-- Email Support Section -->
             <div class="support-section">
-            <h3><i class="fas fa-envelope"></i> Email Support</h3>
+                <h3><i class="fas fa-envelope"></i> Email Support</h3>
                 <label>Level 1 (6 mins)</label>
-                <input type="number" class="email-level" data-minutes="6" value="0" min="0" required>
+                <input type="number" class="form-input email-level" data-minutes="6" value="0" min="0" required>
                 <label>Level 2 (15 mins)</label>
-                <input type="number" class="email-level" data-minutes="15" value="0" min="0" required>
+                <input type="number" class="form-input email-level" data-minutes="15" value="0" min="0" required>
                 <label>Level 3 (30 mins)</label>
-                <input type="number" class="email-level" data-minutes="30" value="0" min="0" required>
+                <input type="number" class="form-input email-level" data-minutes="30" value="0" min="0" required>
                 <label>Level 4 (45 mins)</label>
-                <input type="number" class="email-level" data-minutes="45" value="0" min="0" required>
+                <input type="number" class="form-input email-level" data-minutes="45" value="0" min="0" required>
             </div>
 
             <!-- Phone Support Section -->
             <div class="support-section">
                 <h3><i class="fa-solid fa-phone"></i> Phone Support</h3>
                 <label>Level 1 (6 mins)</label>
-                <input type="number" class="phone-level" data-minutes="6" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" data-minutes="6" value="0" min="0" required>
                 <label>Level 2 (15 mins)</label>
-                <input type="number" class="phone-level" data-minutes="15" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" data-minutes="15" value="0" min="0" required>
                 <label>Level 3 (30 mins)</label>
-                <input type="number" class="phone-level" data-minutes="30" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" data-minutes="30" value="0" min="0" required>
                 <label>Level 4 (45 mins)</label>
-                <input type="number" class="phone-level" data-minutes="45" value="0" min="0" required>
+                <input type="number" class="form-input phone-level" data-minutes="45" value="0" min="0" required>
             </div>
         </div>
 
@@ -73,7 +88,7 @@ echo $OUTPUT->header();
 
         <!-- Submit Button -->
         <div class="form-group">
-            <button type="submit">Submit</button>
+            <button type="submit" class="form-button">Submit</button>
         </div>
 
     </form>
