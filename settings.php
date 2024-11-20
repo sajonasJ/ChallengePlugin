@@ -1,7 +1,8 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
-if ($hassiteconfig) { // Check if the user has admin capabilities
+// Check if the user has admin capabilities
+if ($hassiteconfig) {
     $settings = new admin_settingpage(
         'local_challenge',
         get_string('pluginname', 'local_challenge')
