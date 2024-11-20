@@ -15,4 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 // Language strings for the plugin.
-$string['pluginname'] = 'Coding Challenge Plugin (Support Time Tracker)';
+$string['pluginname'] = 'Challenge Plugin (Support Time Tracker)';
+$string['sitenames'] = 'Site Names';
+$string['sitenames_desc'] = 'Enter the list of site names, one per line. These names will populate the dropdown on the form.';
+

@@ -11,6 +11,10 @@ $PAGE->set_url('/local/challenge/index.php');
 $PAGE->set_context(context_system::instance());
 $PAGE->set_heading('Support Time Tracker');
 
+$site_names = explode("\n", get_config('local_challenge', 'site_names'));
+$site_names = array_map('trim', $site_names);
+
+
 // Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     global $DB;
@@ -110,10 +114,11 @@ echo $OUTPUT->header();
             <label for="site-name">Site name</label>
             <select class="form-input" id="site-name" name="site-name" required>
                 <option value="" disabled selected>Select site</option>
-                <option value="Gold Coast University Hospital">Gold Coast University Hospital</option>
-                <option value="Robina Hospital">Robina Hospital</option>
-                <option value="Varsity Lakes Day Hospital">Varsity Lakes Day Hospital</option>
-                <!-- Add more options as needed -->
+                <?php foreach ($site_names as $site): ?>
+                    <option value="<?php echo htmlspecialchars($site); ?>">
+                        <?php echo htmlspecialchars($site); ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
         </div>
 
