@@ -26,7 +26,7 @@ echo $OUTPUT->header();
 
 <!-- Main Form Content -->
 <main class="challenge-main" readonly>
-    <form id="support-time-form" method="post" action="core/process.php">
+    <form id="support-time-form" method="post" action="process.php">
 
         <!-- User Information -->
         <div class="form-group">

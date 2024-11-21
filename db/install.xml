@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="local/challenge/db" VERSION="2022112000" COMMENT="Challenge Plugin">
+<XMLDB PATH="local/challenge/db" VERSION="2024114000" COMMENT="Challenge Plugin">
     <TABLES>
         <TABLE NAME="challenge_support_time" COMMENT="Stores support time records">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true"/>
-                <FIELD NAME="date" TYPE="date" NOTNULL="true"/>
+               <FIELD NAME="date" TYPE="integer" LENGTH="10" NOTNULL="true" COMMENT="Unix timestamp"/>
                 <FIELD NAME="site" TYPE="char" LENGTH="255" NOTNULL="true"/>
                 <FIELD NAME="email_level1" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
                 <FIELD NAME="email_level2" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>

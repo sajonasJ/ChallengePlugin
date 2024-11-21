@@ -9,27 +9,24 @@ try {
     }
 
     // Validation Functions
-    function validate_name($name)
-    {
+    function validate_name($name) {
         $name = trim($name);
         if (strlen($name) < 3 || strlen($name) > 20) {
-            throw new moodle_exception(' Invalid name length. Name must be between 3 and 20 characters.');
+            throw new moodle_exception('Invalid name length. Name must be between 3 and 20 characters.');
         }
         if (!preg_match('/^[a-zA-Z \'-]+$/', $name)) {
-            throw new moodle_exception(' Invalid name format. Only letters, spaces, hyphens, and apostrophes are allowed.');
+            throw new moodle_exception('Invalid name format. Only letters, spaces, hyphens, and apostrophes are allowed.');
         }
         return $name;
     }
 
-    function validate_total_support_time($totalSupportTime)
-    {
+    function validate_total_support_time($totalSupportTime) {
         if ($totalSupportTime <= 0) {
-            throw new moodle_exception(' Total support time must be greater than zero.');
+            throw new moodle_exception('Total support time must be greater than zero.');
         }
     }
 
-    function check_duplicate_record($name, $date, $siteName)
-    {
+    function check_duplicate_record($name, $date, $siteName) {
         global $DB;
         $existing = $DB->get_record('challenge_support_time', [
             'name' => $name,
@@ -37,18 +34,23 @@ try {
             'site' => $siteName,
         ]);
         if ($existing) {
-            throw new moodle_exception(' A record for this user, date, and site already exists.');
+            throw new moodle_exception('A record for this user, date, and site already exists.');
         }
     }
 
-    function trim_inputs($data)
-    {
+    function trim_inputs($data) {
         return array_map('trim', $data);
     }
 
     // Get Form Data
     $name = validate_name(required_param('user-name', PARAM_TEXT));
-    $date = trim(required_param('date', PARAM_TEXT));
+    $date = required_param('date_timestamp', PARAM_INT);
+
+    // Validate date_timestamp
+    if ($date <= 0) {
+        throw new moodle_exception('Invalid or missing date timestamp.');
+    }
+
     $siteName = trim(required_param('site-name', PARAM_TEXT));
 
     $emailLevels = trim_inputs([
@@ -65,12 +67,7 @@ try {
         'level4' => required_param('phone-level-4', PARAM_INT),
     ]);
 
-    // Validate Date
-    if (!strtotime($date)) {
-        throw new moodle_exception(' Invalid date format. Please provide a valid date.');
-    }
-
-    //Site Name fallback
+    // Site Name fallback
     $site_names = explode("\n", get_config('local_challenge', 'site_names'));
     $site_names = array_map('trim', $site_names);
 
@@ -79,15 +76,14 @@ try {
         $site_names = [
             'Gold Coast University Hospital',
             'Robina Hospital',
-            'Varsity Lakes Day Hospital'
+            'Varsity Lakes Day Hospital',
         ];
     }
-
 
     // Validate Email and Phone Levels
     foreach (array_merge($emailLevels, $phoneLevels) as $level => $value) {
         if ($value < 0) {
-            throw new moodle_exception(" Invalid value for $level: must be a non-negative integer.");
+            throw new moodle_exception("Invalid value for a support level: must be a non-negative integer.");
         }
     }
 
