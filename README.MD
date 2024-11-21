@@ -1,8 +1,11 @@
-# Moodle Plugin: Support Time Tracker
+# Support Time Tracker Plugin for Moodle
 
-Version Moodle 4.1.14+ to edit..
+[![Moodle Version](https://img.shields.io/badge/Moodle-4.1.14+-blue.svg)](https://moodle.org)
+A Moodle plugin for administrators to track and manage support time data by site, support type, and levels. This plugin integrates seamlessly into Moodle's admin interface, offering easy configuration and reporting capabilities.
 
-This plugin, developed for Moodle, allows administrators to track support time data by site, type of support, and levels. It integrates seamlessly into Moodle's admin interface and enables easy configuration and reporting.
+Hosted on GitHub: [Support Time Tracker Plugin](https://github.com/sajonasJ/ChallengePlugin)
+
+---
 
 ## Features
 
@@ -65,7 +68,9 @@ This plugin, developed for Moodle, allows administrators to track support time d
 ---
 
 ## Usage
+
 ### Accessing the Plugin Page
+
 1. Navigate to the plugin directly via the following URL:  
    [http://localhost/local/challenge/index.php](http://localhost/local/challenge/index.php)
 
@@ -89,13 +94,14 @@ To configure site names for the dropdown:
    **Site Administration > Plugins > Local Plugins > Challenge**.
 
 2. - **Database Table**:
-  - The plugin uses the `mdl_challenge_support_time` table to store records. The table structure includes:
-    - `name`: Name of the user (validated to ensure 3-20 characters and specific formats).
-    - `date`: Date of the entry.
-    - `site`: Selected site.
-    - `email_level[1-4]`: Email support levels.
-    - `phone_level[1-4]`: Phone support levels.
-    - `total_support_time`: Calculated total support time.
+
+- The plugin uses the `mdl_challenge_support_time` table to store records. The table structure includes:
+  - `name`: Name of the user (validated to ensure 3-20 characters and specific formats).
+  - `date`: Date of the entry.
+  - `site`: Selected site.
+  - `email_level[1-4]`: Email support levels.
+  - `phone_level[1-4]`: Phone support levels.
+  - `total_support_time`: Calculated total support time.
 
 ---
 
