@@ -114,6 +114,7 @@ To configure site names for the dropdown:
   - Must be a valid date format.
 - **Site Name**:
   - Must match one of the configured site names.
+  - The date is submitted as a UNIX timestamp (seconds since epoch).
 - **Support Levels**:
   - Non-negative integers only.
   - Total support time must be greater than zero.
