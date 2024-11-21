@@ -70,12 +70,19 @@ try {
         throw new moodle_exception(' Invalid date format. Please provide a valid date.');
     }
 
-    // Validate Site Name
+    //Site Name fallback
     $site_names = explode("\n", get_config('local_challenge', 'site_names'));
     $site_names = array_map('trim', $site_names);
-    if (!in_array($siteName, $site_names)) {
-        throw new moodle_exception(' Invalid site name selected.');
+
+    if (empty(array_filter($site_names))) {
+        // Fallback to default site names
+        $site_names = [
+            'Gold Coast University Hospital',
+            'Robina Hospital',
+            'Varsity Lakes Day Hospital'
+        ];
     }
+
 
     // Validate Email and Phone Levels
     foreach (array_merge($emailLevels, $phoneLevels) as $level => $value) {

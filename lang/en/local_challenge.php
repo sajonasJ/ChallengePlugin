@@ -17,5 +17,4 @@
 // Language strings for the plugin.
 $string['pluginname'] = 'Challenge Plugin (Support Time Tracker)';
 $string['sitenames'] = 'Site Names';
-$string['sitenames_desc'] = 'Enter the list of site names, one per line. These names will populate the dropdown on the form.';
-
+$string['sitenames_desc'] = 'Enter the list of site names, one per line. These names will populate the dropdown on the form. If left empty, the default site names will be used.';

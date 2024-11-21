@@ -22,11 +22,11 @@ echo $OUTPUT->header();
 <!-- Link External CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="challenge.css">
+<link rel="stylesheet" href="assets/css/challenge.css">
 
 <!-- Main Form Content -->
 <main class="challenge-main" readonly>
-    <form id="support-time-form" method="post" action="process.php">
+    <form id="support-time-form" method="post" action="core/process.php">
 
         <!-- User Information -->
         <div class="form-group">
@@ -102,7 +102,8 @@ echo $OUTPUT->header();
 
 <!-- Link External JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="challenge.js"></script>
+<script src="assets/js/challenge.js"></script>
+
 
 <?php
 // Output the footer.
